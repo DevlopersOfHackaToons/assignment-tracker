@@ -1,8 +1,8 @@
-body{
+body {
   background-color: blueviolet;
 }
 
-.main{
+.main {
   width: 100%;
   border: 15px;
 }
@@ -17,16 +17,18 @@ body{
   font-size: calc(10px + 2vmin);
   color: white;
 }
-.btmcont{
+.btmcont {
   position: absolute;
   bottom: 0;
   width: 100%;
 }
 
-.tb{
-  width: 100%;
+.tb {
+  width: 60%;
+  min-width: 650px;
 }
-.tbcont{
+
+.tbcont {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -34,3 +36,8 @@ body{
   padding-top: 20px;
 }
 
+@media only screen and (max-width: 600px) {
+  .tb {
+    width: 100%;
+  }
+}

@@ -34,35 +34,34 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-function createData(name, calories, fat, carbs, protein, price) {
+function createData(name, experimentCount, assignmentCount) {
     return {
       name,
-      calories,
-      fat,
-      carbs,
-      protein,
-      price,
-      history: [
+      experimentCount,
+      assignmentCount,
+      experiments : [
         {
-          date: '2020-01-05',
-          customerId: '11091700',
-          amount: 3,
-        },
-        {
-          date: '2020-01-02',
-          customerId: 'Anonymous',
-          amount: 1,
-        },
+          dueDate:"12-2-2022",
+          name:"Ash in coal sample",
+          number:2
+        }
       ],
+      assignments : [
+        {
+          dueDate:"12-2-2022",
+          name:"Ash in coal sample",
+          number:2
+        }
+      ]
     };
 }
 
 const rows = [
-    createData('Chemistry', 159, 6.0, 24, 4.0, 3.99),
-    createData('Physics', 237, 9.0, 37, 4.3, 4.99),
-    createData('Mathematics', 262, 16.0, 24, 6.0, 3.79),
-    createData('Mechanics', 305, 3.7, 67, 4.3, 2.5),
-    createData('BEE', 356, 16.0, 49, 3.9, 1.5),
+    createData('Chemistry', 1, 2),
+    createData('Physics', 1, 2),
+    createData('Mathematics', 1, 2),
+    createData('Mechanics', 1, 2),
+    createData('BEE', 1, 2),
 ];
 
 function Row(props) {
@@ -84,10 +83,8 @@ function Row(props) {
           <TableCell component="th" scope="row">
             {row.name}
           </TableCell>
-          <TableCell align="right">{row.calories}</TableCell>
-          <TableCell align="right">{row.fat}</TableCell>
-          <TableCell align="right">{row.carbs}</TableCell>
-          <TableCell align="right">{row.protein}</TableCell>
+          <TableCell align="center">{row.experimentCount}</TableCell>
+          <TableCell align="center">{row.assignmentCount}</TableCell>
         </TableRow>
         <TableRow>
           <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -101,19 +98,42 @@ function Row(props) {
                     <TableRow>
                       <TableCell>Due Date</TableCell>
                       <TableCell>Name</TableCell>
-                      <TableCell>Experminet Number</TableCell>
+                      <TableCell>Experiment Number</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {row.history.map((historyRow) => (
-                      <TableRow key={historyRow.date}>
-                        <TableCell component="th" scope="row">
-                          {historyRow.date}
-                        </TableCell>
-                        <TableCell>{historyRow.customerId}</TableCell>
-                        <TableCell>{historyRow.amount}</TableCell>
-                      </TableRow>
-                    ))}
+                    {row.experiments.map((experiment) => {
+                      return(
+                        <TableRow key = {experiment.number}>
+                          <TableCell>{experiment.dueDate}</TableCell>
+                          <TableCell>{experiment.name}</TableCell>
+                          <TableCell>{experiment.number}</TableCell>
+                        </TableRow>
+                      )
+                    })}
+                  </TableBody>
+                </Table>
+                <Typography variant="h6" gutterBottom component="div">
+                  Assignments
+                </Typography>
+                <Table size="small" aria-label="purchases">
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>Due Date</TableCell>
+                      <TableCell>Name</TableCell>
+                      <TableCell>Assignment Number</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {row.assignments.map((assignment) => {
+                        return(
+                          <TableRow key = {assignment.number}>
+                            <TableCell>{assignment.dueDate}</TableCell>
+                            <TableCell>{assignment.name}</TableCell>
+                            <TableCell>{assignment.number}</TableCell>
+                          </TableRow>
+                        )
+                    })}
                   </TableBody>
                 </Table>
               </Box>
@@ -132,10 +152,8 @@ export default function CustomizedTables() {
             <StyledTableRow sx = {{backgroundColor: '#222222', color: '#FFFFFF'}}>
                 <StyledTableCell />
                 <StyledTableCell>Subject</StyledTableCell>
-                <StyledTableCell align="right">Calories</StyledTableCell>
-                <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
-                <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
-                <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell>
+                <StyledTableCell align="center">Experiments</StyledTableCell>
+                <StyledTableCell align="center">Assignments</StyledTableCell>
             </StyledTableRow>
             </TableHead>
             <TableBody>
